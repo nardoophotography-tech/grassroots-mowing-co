@@ -1,0 +1,18 @@
+const express = require("express");
+const path = require("path");
+
+const app = express();
+
+// serve EVERYTHING from this folder
+app.use(express.static(__dirname));
+
+// send homepage
+app.get(/.*/, (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log("running on port " + PORT);
+});
