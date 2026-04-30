@@ -3,11 +3,14 @@ const path = require("path");
 
 const app = express();
 
-// serve EVERYTHING from this folder
+// Serve the built React app
 app.use(express.static(path.join(__dirname, "dist")));
-// send homepage
+
+// Send homepage
 app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
