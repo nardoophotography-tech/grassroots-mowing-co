@@ -3,12 +3,6 @@ const path = require("path");
 
 const app = express();
 
-app.use(express.json());
-
-// Serve React build
-app.use(express.static(path.join(__dirname, "dist")));
-
-// IMPORTANT API ROUTE (must be above "*")
 app.get("/pay/:id", (req, res) => {
   const payId = req.params.id;
 
