@@ -24,6 +24,16 @@ app.get("/pay/:id", (req, res) => {
     })
     .then(msg => console.log("SMS SENT:", msg.sid))
     .catch(err => console.log("SMS FAILED:", err));
+  }
+
+  res.send(`
+    <h1>Payment Successful ✔</h1>
+    <p>Payment ID: ${payId}</p>
+    <a href="/">Back to Home</a>
+  `);
+});
+.then(msg => console.log("SMS SENT:", msg.sid))
+    .catch(err => console.log("SMS FAILED:", err));
   } else {
     console.log("TWILIO NOT LOADED (env issue)");
   }
