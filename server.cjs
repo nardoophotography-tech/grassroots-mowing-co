@@ -4,8 +4,7 @@ const path = require("path");
 const app = express();
 
 // serve EVERYTHING from this folder
-app.use(express.static(__dirname));
-
+app.use(express.static(path.join(__dirname, "dist")));
 // send homepage
 app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
