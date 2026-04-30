@@ -16,13 +16,17 @@ app.use(express.static(path.join(__dirname, "dist")));
 app.get("/pay/:id", (req, res) => {
   const payId = req.params.id;
 
-  twilioClient.messages.create({
-    body: `Payment successful: ${payId}`,
-    from: "+17623713671",
-    to: "+61412345678"
-  })
-  .then(msg => console.log("SMS SENT:", msg.sid))
-  .catch(err => console.log("SMS FAILED:", err));
+  if (twilioClient) {
+    twilioClient.messages.create({
+      body: `Payment successful: ${payId}`,
+      from: "+17623713671",
+      to: "+61412345678"
+    })
+    .then(msg => console.log("SMS SENT:", msg.sid))
+    .catch(err => console.log("SMS FAILED:", err));
+  } else {
+    console.log("TWILIO NOT LOADED (env issue)");
+  }
 
   res.send(`
     <h1>Payment Successful ✔</h1>
