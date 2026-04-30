@@ -23,7 +23,7 @@ app.get("/pay/:id", (req, res) => {
       .create({
         body: `Payment successful: ${payId}`,
         from: "+17623713671",
-        to: "+61412345678"
+        to: "+61404231448"
       })
       .then(msg => console.log("SMS SENT:", msg.sid))
       .catch(err => console.log("SMS FAILED:", err));
