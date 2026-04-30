@@ -1,6 +1,10 @@
 const express = require("express");
 const path = require("path");
+const twilio = require("twilio");
 
+const twilioClient = process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN
+  ? twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN)
+  : null;
 const app = express();
 
 app.use(express.json());
