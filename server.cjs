@@ -15,13 +15,15 @@ app.use(express.static(path.join(__dirname, "dist")));
 // Payment route (FIXED: shows a webpage instead of JSON)
 app.get("/pay/:id", (req, res) => {
   const payId = req.params.id;
-  if (twilioClient) {
-    twilioClient.messages.create({
-      body: `Payment successful: ${payId}`,
-      from: process.env.TWILIO_FROM_NUMBER,
-      to: "+YOUR_NUMBER"
-    }).catch(() => {});
-  }
+ if (twilioClient) {
+  twilioClient.messages.create({
+    body: `Payment successful: ${payId}`,
+    from: "+17623713671",
+    to: "+61412345678"
+  })
+  .then(msg => console.log("SMS SENT:", msg.sid))
+  .catch(err => console.log("SMS ERROR:", err));
+}
   res.send(`
     <!DOCTYPE html>
     <html>
